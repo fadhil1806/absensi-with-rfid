@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('styles')
+<meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         .glass {
             background: rgba(255, 255, 255, 0.17);
@@ -34,6 +35,7 @@
     </style>
 @endsection
 @section('content')
+
     @php
         date_default_timezone_set('Asia/jakarta');
     @endphp
@@ -719,7 +721,7 @@
 
             $jsonTepatWaktu = json_encode($tepatWaktu);
             $jsonTerlambat = json_encode($terlambat);
-        @endphp 
+        @endphp
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 window.ApexCharts && (new ApexCharts(document.getElementById('chart-absensi-{{ $item->id }}'), {

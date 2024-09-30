@@ -28,6 +28,7 @@ Auth::routes([
     'register' => false, // Registration Routes...
     'reset' => false, // Password Reset Routes...
     'verify' => false, // Email Verification Routes...
+    '/data-card/add' => false
 ]);
 
 Route::get('/', [HomeController::class, 'index'])->middleware('check.pin')->name('home');
@@ -40,7 +41,7 @@ Route::get('/data-card/siswa', action: [DataCardController::class, 'indexSiswa']
 Route::get('/data-card/tendik', action: [DataCardController::class, 'indexTendik'])->middleware('check.pin')->name('card');
 Route::get('/data-card/alert', action: [DataCardController::class, 'indexAlert'])->middleware('check.pin')->name('card.alert');
 Route::get('/data-card/add', action: [DataCardController::class, 'edit'])->middleware('check.pin')->name('card.edit');
-Route::post('/data-card/add', [DataCardController::class, 'store'])->name('card.add');
+Route::post('/data-card/add', action: [DataCardController::class, 'store'])->name('card.add');
 
 Route::get('/card-alert/add/{id}', action: [DataCardController::class, 'addAlert'])->middleware('check.pin')->name('card.alert.add');
 Route::get('/api/siswa', action: [DataCardController::class, 'getSiswa'])->name('data.siswa');

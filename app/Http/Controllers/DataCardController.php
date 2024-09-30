@@ -65,7 +65,7 @@ class DataCardController extends Controller
             'data_id' => 'required',
             'status' => 'required|in:siswa,tendik', // Memastikan hanya 'siswa' atau 'tendik'
         ]);
-    
+
         try {
             if ($request->status === 'siswa') {
                 DataCard::create([
@@ -80,7 +80,7 @@ class DataCardController extends Controller
                     'tendik_id' => $request->data_id,
                 ]);
             }
-    
+
             return response()->json([
                 'message' => 'Data kartu berhasil disimpan.',
             ], 201);
@@ -90,7 +90,7 @@ class DataCardController extends Controller
             ], 500);
         }
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -104,9 +104,8 @@ class DataCardController extends Controller
 
         $card_id = $request->id;
         $existingCard = DataCard::where('card_id', $card_id)->first();
-
         // Cek apakah kartu sudah ada
-        if (!$existingCard) {
+        if ($existingCard) {
             DataCardAlert::create([
                 'card_id' => $card_id,
                 'status' => 'tidak terdaftar'
