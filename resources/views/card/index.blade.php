@@ -65,26 +65,26 @@
                                         <div>{{ $item->siswa->nama }}</div>
                                     </td>
                                     <td>
-                                        <div>{{ $item->kelas }}</div>
+                                        <div>{{ $item->siswa->kelas }}</div>
                                     </td>
                                     <td>
-                                        <div>{{ $item->jenis_kelamin }}</div>
+                                        <div>{{ $item->siswa->jenis_kelamin }}</div>
                                     </td>
                                     <td>
-                                        <div>{{ $item->nisn }}</div>
+                                        <div>{{ $item->siswa->nisn }}</div>
                                     </td>
                                     <td>
                                         <div>{{ $item->card_id }}</div>
                                     </td>
                                     <td>
-                                        <div>{{ $item->nomor_whatsapp }}</div>
+                                        <div>{{ $item->siswa->nomor_whatsapp }}</div>
                                     </td>
                                     <td class="text-secondary">
                                         {{ $item->status }}
                                     </td>
                                     <td class="text-end">
                                         <div class="row g-0">
-                                            <div class="col">
+                                            {{-- <div class="col">
                                                 <button href="#" class="btn btn-success btn-icon"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#modal-update-{{ $item->id }}">
@@ -100,23 +100,24 @@
                                                         <path d="M16 5l3 3" />
                                                     </svg>
                                                 </button>
-                                            </div>
+                                            </div> --}}
                                             <div class="col">
-                                                <button href="#" class="btn btn-danger btn-icon"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#modal-delete-{{ $item->id }}">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                        <path d="M4 7l16 0" />
-                                                        <path d="M10 11l0 6" />
-                                                        <path d="M14 11l0 6" />
-                                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                                    </svg>
-                                                </button>
+                                                <form action="{{ route('card.delete', $item->id) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete();">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                             class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                                            <path d="M4 7l16 0"/>
+                                                            <path d="M10 11l0 6"/>
+                                                            <path d="M14 11l0 6"/>
+                                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"/>
+                                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"/>
+                                                        </svg>
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
                                     </td>
@@ -136,3 +137,9 @@
         </div>
     </div>
 @endsection
+<script>
+    function confirmDelete() {
+        return confirm('Apakah Anda yakin ingin menghapus data ini?');
+    }
+</script>
+

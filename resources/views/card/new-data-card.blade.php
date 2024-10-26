@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="container mt-5">
-        <form method="post" action="{{ route('card.add') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('card.add', $id) }}" enctype="multipart/form-data">
             @csrf
             <div class="row border p-3 rounded-3">
                 <div class="col-lg-12">
                     <div class="mb-3">
                         <label class="form-label">Id Card</label>
-                        <input type="text" class="form-control" name="card_id" value={{ old('id', $data->card_id) }} >
+                        <input type="text" class="form-control" name="card_id" value={{ old('id', $data->card_id) }}>
                         @error('id')
                             <div class="text-danger mt-2">{{ $message }}</div>
                         @enderror
@@ -31,16 +31,20 @@
                     <div class="mb-3">
                         <label class="form-label">Data</label>
                         <select class="form-select" name="data_id" id="dataSelect">
-                            <!-- Opsi data akan diisi berdasarkan pilihan status -->
                         </select>
                         @error('data')
                             <div class="text-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
-            </div>
-            <div class="mt-3">
-                <button type="submit" class="btn btn-success" id="submitButton">Submit</button>
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-success" id="submitButton">Submit</button>
+                </div>
+                @if (session('message'))
+                    <div class="text-danger mb-3 mt-4" role="alert">
+                        {{ session('message') }}
+                    </div>
+                @endif
             </div>
         </form>
     </div>

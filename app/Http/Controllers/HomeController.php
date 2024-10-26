@@ -142,7 +142,7 @@ class HomeController extends Controller
         }
 
         $waktuTerkini = Carbon::now();
-        if (is_null($getSiswa)) {
+        if (is_null(value: $getSiswa)) {
             $absensiTendikKemarin = Absensi::where('tendik_id', $getTendik->id)
                 ->whereDate('jam_masuk', Carbon::yesterday())
                 ->whereNotNull('tendik_id')

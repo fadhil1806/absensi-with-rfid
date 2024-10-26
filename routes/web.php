@@ -37,17 +37,25 @@ Route::post('/pulang', [HomeController::class, 'pulang'])->middleware('check.pin
 
 use App\Http\Controllers\DataCardController;
 
+// Rute for UI
 Route::get('/data-card/siswa', action: [DataCardController::class, 'indexSiswa'])->middleware('check.pin')->name('card');
 Route::get('/data-card/tendik', action: [DataCardController::class, 'indexTendik'])->middleware('check.pin')->name('card');
 Route::get('/data-card/alert', action: [DataCardController::class, 'indexAlert'])->middleware('check.pin')->name('card.alert');
-Route::get('/data-card/add', action: [DataCardController::class, 'edit'])->middleware('check.pin')->name('card.edit');
-Route::post('/data-card/add', action: [DataCardController::class, 'store'])->name('card.add');
 
-Route::get('/card-alert/add/{id}', action: [DataCardController::class, 'addAlert'])->middleware('check.pin')->name('card.alert.add');
+//Tap data
+Route::get('/card/scan', [DataCardController::class, 'store'])->name('card.add');
+
+// Get data
 Route::get('/api/siswa', action: [DataCardController::class, 'getSiswa'])->name('data.siswa');
 Route::get('/api/tendik', action: [DataCardController::class, 'getTendik'])->name('data.tendik');
 
-Route::post('/data-card/addData', action: [DataCardController::class, 'addDataCard'])->name('card.add');
+// Register card in alert
+Route::get('/data-card-alert/add/{id}', action: [DataCardController::class, 'addAlert'])->middleware('check.pin')->name('card.alert.add');
+Route::post('/data-card/register/card/{id}', action: [DataCardController::class, 'addDataCard'])->name('card.add');
+
+// Delete card data for users
+Route::delete('/data-card/delete/{id}', [DataCardController::class, 'destroy
+'])->name('card.delete');
 
 Route::middleware(['auth', 'check.pin'])->group(function () {
     Route::controller(TendikController::class)->group(function () {
