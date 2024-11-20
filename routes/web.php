@@ -38,9 +38,9 @@ Route::post('/pulang', [HomeController::class, 'pulang'])->middleware('check.pin
 use App\Http\Controllers\DataCardController;
 
 // Rute for UI
-Route::get('/data-card/siswa', action: [DataCardController::class, 'indexSiswa'])->middleware('check.pin')->name('card');
-Route::get('/data-card/tendik', action: [DataCardController::class, 'indexTendik'])->middleware('check.pin')->name('card');
-Route::get('/data-card/alert', action: [DataCardController::class, 'indexAlert'])->middleware('check.pin')->name('card.alert');
+Route::get('/data-card-siswa', action: [DataCardController::class, 'indexSiswa'])->middleware('check.pin')->name('card');
+Route::get('/data-card-tendik', action: [DataCardController::class, 'indexTendik'])->middleware('check.pin')->name('card');
+Route::get('/data-card-alert', action: [DataCardController::class, 'indexAlert'])->middleware('check.pin')->name('card.alert');
 
 //Tap data
 Route::get('/card/scan', [DataCardController::class, 'store'])->name('card.add');

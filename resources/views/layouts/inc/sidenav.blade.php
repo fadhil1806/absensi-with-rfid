@@ -95,13 +95,13 @@
                     <div class="dropdown-menu {{ Route::currentRouteName() == 'tendik' ? 'show' : '' }} {{ Route::currentRouteName() == 'siswa' ? 'show' : '' }}">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item {{ Route::currentRouteName() == 'tendik' ? 'active' : '' }}" href="/data-card/tendik">
+                                <a class="dropdown-item {{ Route::currentRouteName() == 'tendik' ? 'active' : '' }}" href="/data-card-tendik">
                                     Tendik
                                 </a>
-                                <a class="dropdown-item {{ Route::currentRouteName() == 'siswa' ? 'active' : '' }}" href="/data-card/siswa">
+                                <a class="dropdown-item {{ Route::currentRouteName() == 'siswa' ? 'active' : '' }}" href="/data-card-siswa">
                                     Siswa
                                 </a>
-                                <a class="dropdown-item {{ Route::currentRouteName() == 'siswa' ? 'active' : '' }}" href="/data-card/alert">
+                                <a class="dropdown-item {{ Route::currentRouteName() == 'siswa' ? 'active' : '' }}" href="/data-card-alert">
                                     Alert
                                 </a>
                             </div>
